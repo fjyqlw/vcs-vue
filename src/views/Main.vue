@@ -1,6 +1,7 @@
 <style lang="less">
 @import "../styles/main.less";
 @import "../styles/common.less";
+@import "../iconfont/iconfont.css";
 </style>
 <template>
     <div class="main" :class="{'main-hide-text': shrink}">
@@ -168,6 +169,7 @@ export default {
         this.loading = true;
       let res = await post("/auth/logout", {});
       if (res.code === 0) {
+        localStorage.removeItem('remember');
         //退出登录
         this.$store.commit("logout", this);
         this.$store.commit("clearOpenedSubmenu");
